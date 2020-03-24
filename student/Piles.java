@@ -16,7 +16,7 @@ public class Piles
    {
       piles = new ArrayList<>();
       for (int s : pileSizes)
-         piles.add(s);
+         piles.add(((Integer) s));
    }
 
    /**
@@ -25,7 +25,13 @@ public class Piles
     */
    public String toString()
    {
-      . . .
+       String tostring = "";
+       for (int i = 0; i < piles.size(); i++)
+       {
+           tostring += piles.get(i).toString() + " ";
+       }
+       
+       return tostring;
    }
 
    /**
@@ -33,6 +39,25 @@ public class Piles
    */
    public void playRound()
    {
-      . . .
+      piles.add(new Integer(0));
+      
+      
+      for (int i = 0; i < piles.size(); i++)
+      {
+          Integer current = piles.get(i);
+          current = ((Integer) piles.get(i).intValue() - 1);
+          if (current.intValue() == 0)
+          {
+            piles.remove(i);
+            i--;
+          }
+          else
+            piles.set(i, current);
+            
+          Integer last = piles.get(piles.size() - 1);
+          last = ((Integer) last.intValue() + 1);
+          piles.set(piles.size() - 1, last);
+      }
+      
    }
 }
